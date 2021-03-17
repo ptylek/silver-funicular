@@ -1,10 +1,10 @@
 import './App.css';
-import Page from './components/Page';
+import MapPage from './pages/map';
 
 const App = () => {
   return (
 	<div>
-		<Page/>
+		<MapPage/>
 	</div>
   );
 }
