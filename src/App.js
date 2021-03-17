@@ -1,7 +1,7 @@
 import './App.css';
 import Page from './components/Page';
 
-function App() {
+const App = () => {
   return (
 	<div>
 		<Page/>

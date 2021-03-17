@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Layout as AntLayout } from 'antd';
+import GoogleMap from './GoogleMap';
 const { Header, Content, Footer: AntFooter } = AntLayout;
 
 const Layout = styled(AntLayout)`
@@ -8,7 +9,6 @@ const Layout = styled(AntLayout)`
 
 const Inner = styled(Content)`
 	min-height: 280px;
-	padding: 24px;
 	background: #fff;
 `;
 
@@ -20,14 +20,18 @@ const Footer = styled(AntFooter)`
 	text-align: center;
 `;
 
-export default function Page() {
+const Page = () => {
 	return (
 		<Layout>
 			<Header>
 				<Logo>Wikipedia Map</Logo>
 			</Header>
-			<Inner></Inner>
-			<Footer>Wikipedia Map ©2021 Created by Pawel Tylek</Footer>
+			<Inner>
+				<GoogleMap/>
+			</Inner>
+			<Footer>©2021 by Pawel Tylek</Footer>
 		</Layout>
 	)
 }
+
+export default Page;
