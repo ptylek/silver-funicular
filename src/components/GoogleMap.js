@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import GoogleMapReact from 'google-map-react';
+import WikipediaApi from '../services/api/wikipedia';
 
 const KRAKOW_POSITION = {
 	lat: 50.061698,
@@ -14,6 +16,18 @@ const GoogleMapWrapper = styled.div`
 `;
 
 const GoogleMap = () => {
+	useEffect(() => {
+		async function fetchArticles() {
+			const articles = await WikipediaApi.getArticles({
+				coord: KRAKOW_POSITION
+			})
+
+			console.log('Articles for Krakow:', articles);
+		}
+
+		fetchArticles();
+	}, []);
+
 	return (
 		<GoogleMapWrapper>
 			<GoogleMapReact
