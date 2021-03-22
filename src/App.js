@@ -1,11 +1,11 @@
 import './App.css';
-import MapPage from './pages/map';
+import Page from './components/Page';
 
 const App = () => {
   return (
-	<div>
-		<MapPage/>
-	</div>
+	<>
+		<Page/>
+	</>
   );
 }
 

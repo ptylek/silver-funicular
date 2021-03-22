@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Layout as AntLayout } from 'antd';
-import GoogleMap from './GoogleMap';
+import GooglePage from './../pages/map';
 const { Header, Content, Footer: AntFooter } = AntLayout;
 
 const Layout = styled(AntLayout)`
@@ -27,7 +27,7 @@ const Page = () => {
 				<Logo>Wikipedia Map</Logo>
 			</Header>
 			<Inner>
-				<GoogleMap/>
+				<GooglePage/>
 			</Inner>
 			<Footer>©2021 by Pawel Tylek</Footer>
 		</Layout>

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import GoogleMapReact from 'google-map-react';
-import WikipediaApi from '../services/api/wikipedia';
+import { emit } from '../pages/map/mediator';
 
 const KRAKOW_POSITION = {
 	lat: 50.061698,
@@ -17,15 +17,7 @@ const GoogleMapWrapper = styled.div`
 
 const GoogleMap = () => {
 	useEffect(() => {
-		async function fetchArticles() {
-			const articles = await WikipediaApi.getArticles({
-				coord: KRAKOW_POSITION
-			})
-
-			console.log('Articles for Krakow:', articles);
-		}
-
-		fetchArticles();
+		emit('mapLoaded', KRAKOW_POSITION);
 	}, []);
 
 	return (
@@ -34,6 +26,7 @@ const GoogleMap = () => {
 				bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY }}
 				defaultCenter={KRAKOW_POSITION}
 				defaultZoom={DEFAULT_ZOOM}
+				onChange={event => emit('mapDragged', event.center)}
 			>
 			</GoogleMapReact>
 		</GoogleMapWrapper>

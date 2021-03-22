@@ -1,10 +1,12 @@
-import Page from '../../components/Page';
+import GoogleMap from '../../components/GoogleMap';
+import Mediator from './mediator';
 
 const GooglePage = () => {
 	return (
-		<div>
-			<Page/>			
-		</div>
+		<>
+			<Mediator/>
+			<GoogleMap/>		
+		</>
 	)
 }
 
