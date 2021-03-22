@@ -8,7 +8,7 @@ const client = ky.create({
 });
 
 const api = {
-	getArticles ({ coord, radius = 1000, limit = 10} = {}) {
+	getArticles ({ coord, radius = 1000, limit = 30} = {}) {
 		const params = {
 			action: 'query',
 			list: 'geosearch',
