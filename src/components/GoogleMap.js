@@ -30,14 +30,14 @@ const GoogleMap = () => {
 				onGoogleApiLoaded={({ map, maps }) => emit('mapLoaded', map)}
 				defaultCenter={KRAKOW_POSITION}
 				defaultZoom={DEFAULT_ZOOM}
-				onChange={(event) => emit('mapDragged', event.center)}
+				onChange={(event) => emit('mapChanged', event.center)}
 			>
 				{markers.map((marker) => (
 					<Marker
 						key={marker.pageid}
 						lat={marker.lat}
 						lng={marker.lng}
-						text={marker.title}
+						title={marker.title}
 					/>
 				))}
 			</GoogleMapReact>

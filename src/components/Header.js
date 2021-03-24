@@ -35,7 +35,6 @@ export default function Header() {
 				const selectedPlace = searchBox.getPlaces()[0];
 				const { location } = selectedPlace.geometry;
 
-				console.log(location.toJSON());
 				emit('searchBoxPlaceChanged', location.toJSON());
 			});
 		}

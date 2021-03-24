@@ -24,7 +24,7 @@ function mapWikipediaArticlesToMarkers(articles) {
 function useMapMediator() {
 	const [, { addMarkers, setGoogleApiLoaded }] = useMapStore();
 
-	async function mapDragged(center) {
+	async function mapChanged(center) {
 		const response = await WikipediaApi.getArticles({ coord: center });
 		const articles = mapWikipediaArticlesToMarkers(
 			response.query.geosearch
@@ -41,7 +41,7 @@ function useMapMediator() {
 		map.setCenter(center);
 	}
 
-	attachListener('mapDragged', mapDragged);
+	attachListener('mapChanged', mapChanged);
 	attachListener('mapLoaded', mapLoaded);
 	attachListener('searchBoxPlaceChanged', searchBoxPlaceChanged);
 }
