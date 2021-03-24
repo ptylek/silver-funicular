@@ -22,7 +22,10 @@ function mapWikipediaArticlesToMarkers(articles) {
 }
 
 function useMapMediator() {
-	const [, { addMarkers, setGoogleApiLoaded }] = useMapStore();
+	const [
+		,
+		{ addMarkers, setGoogleApiLoaded, setModalVisible, setCurrentArticle },
+	] = useMapStore();
 
 	async function mapChanged(center) {
 		const response = await WikipediaApi.getArticles({ coord: center });
@@ -38,12 +41,22 @@ function useMapMediator() {
 	}
 
 	function searchBoxPlaceChanged(center) {
-		map.setCenter(center);
+		if (map) {
+			map.setCenter(center);
+		}
+	}
+
+	async function markerClicked(pageid) {
+		const response = await WikipediaApi.getArticle({ pageid: pageid });
+		const article = response.query.pages[pageid];
+		setCurrentArticle({ url: article.fullurl, title: article.title });
+		setModalVisible(true);
 	}
 
 	attachListener('mapChanged', mapChanged);
 	attachListener('mapLoaded', mapLoaded);
 	attachListener('searchBoxPlaceChanged', searchBoxPlaceChanged);
+	attachListener('markerClicked', markerClicked);
 }
 
 export default function MapMediator() {

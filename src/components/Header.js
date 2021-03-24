@@ -8,26 +8,28 @@ const { Header: AntHeader } = AntLayout;
 const Logo = styled.h2`
 	color: #fff;
 	margin: 0;
+	white-space: nowrap;
 `;
 
 const StyledHeader = styled(AntHeader)`
 	display: flex;
 	align-items: center;
+	padding: 0 20px;
 `;
 
 const SearchBox = styled(Input).attrs({
 	type: 'text',
 	placeholder: 'Type address to search...',
 })`
-	margin: 0 20px;
+	margin: 0 0 0 20px;
 	width: auto;
 `;
 
 export default function Header() {
-	const [{ googleApiLoaded }] = useMapStore();
+	const [{ isGoogleApiLoaded }] = useMapStore();
 
 	useEffect(() => {
-		if (googleApiLoaded) {
+		if (isGoogleApiLoaded) {
 			const input = document.getElementById('searchbox');
 			const searchBox = new window.google.maps.places.SearchBox(input);
 
@@ -38,7 +40,7 @@ export default function Header() {
 				emit('searchBoxPlaceChanged', location.toJSON());
 			});
 		}
-	}, [googleApiLoaded]);
+	}, [isGoogleApiLoaded]);
 
 	return (
 		<StyledHeader>

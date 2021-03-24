@@ -38,6 +38,7 @@ const GoogleMap = () => {
 						lat={marker.lat}
 						lng={marker.lng}
 						title={marker.title}
+						pageid={marker.pageid}
 					/>
 				))}
 			</GoogleMapReact>

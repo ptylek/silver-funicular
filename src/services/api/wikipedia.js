@@ -21,12 +21,34 @@ const api = {
 		}
 
 		return client
-			.get('api.php?', {
+			.get(`api.php?`, {
 				searchParams: {
 					...params,
 					gscoord: coord.lat + '|' + coord.lng,
 					gsradius: radius,
 					gslimit: limit,
+				},
+			})
+			.json();
+	},
+	getArticle({ pageid } = {}) {
+		const params = {
+			action: 'query',
+			format: 'json',
+			pageids: pageid,
+			prop: 'info',
+			inprop: 'url',
+			origin: '*',
+		};
+
+		if (!pageid) {
+			console.error('Wikipedia API: no pageid passed to getArticle');
+		}
+
+		return client
+			.get(`api.php?`, {
+				searchParams: {
+					...params,
 				},
 			})
 			.json();

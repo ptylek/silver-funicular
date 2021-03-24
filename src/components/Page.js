@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Layout as AntLayout } from 'antd';
 import GoogleMap from './GoogleMap';
 import Header from './Header';
+import ArticleModal from './ArticleModal';
 const { Content, Footer: AntFooter } = AntLayout;
 
 const Layout = styled(AntLayout)`
@@ -24,6 +25,7 @@ const Page = () => {
 			<Header />
 			<Inner>
 				<GoogleMap />
+				<ArticleModal />
 			</Inner>
 			<Footer>
 				©2021 by Pawel Tylek
