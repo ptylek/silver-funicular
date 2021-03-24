@@ -1,12 +1,12 @@
 import './App.css';
-import Page from './components/Page';
+import MapPage from './pages/map';
 
 const App = () => {
-  return (
-	<>
-		<Page/>
-	</>
-  );
-}
+	return (
+		<>
+			<MapPage />
+		</>
+	);
+};
 
 export default App;

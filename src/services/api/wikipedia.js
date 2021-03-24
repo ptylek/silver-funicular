@@ -3,21 +3,21 @@ import ky from 'ky';
 const client = ky.create({
 	prefixUrl: 'https://pl.wikipedia.org/w/',
 	headers: {
-		'content-type': 'application/json'
-	}
+		'content-type': 'application/json',
+	},
 });
 
 const api = {
-	getArticles ({ coord, radius = 1000, limit = 30} = {}) {
+	getArticles({ coord, radius = 1000, limit = 30 } = {}) {
 		const params = {
 			action: 'query',
 			list: 'geosearch',
 			format: 'json',
-			origin: '*'
-		}
-		
+			origin: '*',
+		};
+
 		if (!coord) {
-			console.error('Wikipedia API: no coord passed to getArticles')
+			console.error('Wikipedia API: no coord passed to getArticles');
 		}
 
 		return client
@@ -26,11 +26,11 @@ const api = {
 					...params,
 					gscoord: coord.lat + '|' + coord.lng,
 					gsradius: radius,
-					gslimit: limit
-				}
+					gslimit: limit,
+				},
 			})
 			.json();
-	}
-}
+	},
+};
 
 export default api;

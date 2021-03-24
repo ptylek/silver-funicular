@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { Layout as AntLayout } from 'antd';
-import GooglePage from './../pages/map';
-const { Header, Content, Footer: AntFooter } = AntLayout;
+import GoogleMap from './GoogleMap';
+import Header from './Header';
+const { Content, Footer: AntFooter } = AntLayout;
 
 const Layout = styled(AntLayout)`
 	min-height: 100vh;
@@ -12,26 +13,25 @@ const Inner = styled(Content)`
 	background: #fff;
 `;
 
-const Logo = styled.h2`
-	color: #fff;
-`;
-
 const Footer = styled(AntFooter)`
 	text-align: center;
+	font-size: 10px;
 `;
 
 const Page = () => {
 	return (
 		<Layout>
-			<Header>
-				<Logo>Wikipedia Map</Logo>
-			</Header>
+			<Header />
 			<Inner>
-				<GooglePage/>
+				<GoogleMap />
 			</Inner>
-			<Footer>©2021 by Pawel Tylek</Footer>
+			<Footer>
+				©2021 by Pawel Tylek
+				<br />
+				during Netguru College: Frontend React
+			</Footer>
 		</Layout>
-	)
-}
+	);
+};
 
 export default Page;
