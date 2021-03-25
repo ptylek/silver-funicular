@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import GoogleMapReact from 'google-map-react';
-import { emit } from '../pages/map/mediator';
-import Marker from './Marker';
-import { useMapStore } from '../pages/map/store';
+import { emit } from '../../pages/map/mediator';
+import Marker from './../Marker';
+import { useMapStore } from '../../pages/map/store';
+import styles from './styles';
 
 const KRAKOW_POSITION = {
 	lat: 50.061698,
@@ -30,6 +31,9 @@ const GoogleMap = () => {
 				onGoogleApiLoaded={({ map, maps }) => emit('mapLoaded', map)}
 				defaultCenter={KRAKOW_POSITION}
 				defaultZoom={DEFAULT_ZOOM}
+				options={{
+					styles: styles.tinia,
+				}}
 				onChange={(event) => emit('mapChanged', event.center)}
 			>
 				{markers.map((marker) => (
