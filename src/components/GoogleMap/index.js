@@ -37,7 +37,6 @@ const GoogleMap = () => {
 				options={{
 					styles: styles.tinia,
 				}}
-				onChange={(event) => emit('mapChanged', event.center)}
 			>
 				{markers.map((marker) => (
 					<Marker
