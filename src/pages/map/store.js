@@ -47,6 +47,19 @@ const Store = createStore({
 				};
 			});
 		},
+		setArticleWasViewed: ({ pageid, isViewed }) => ({
+			setState,
+			getState,
+		}) => {
+			const { markers } = getState();
+			const markerIndex = markers.findIndex(
+				(marker) => marker.pageid === pageid
+			);
+
+			setState((draft) => {
+				draft.markers[markerIndex].isViewed = isViewed;
+			});
+		},
 	},
 });
 

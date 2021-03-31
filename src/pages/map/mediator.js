@@ -1,4 +1,5 @@
 import WikipediaApi from '../../services/api/wikipedia';
+import ArticlesDatabase from '../../services/articles-db';
 import { useMapStore } from './store';
 
 const listeners = {};
@@ -21,17 +22,30 @@ function mapWikipediaArticlesToMarkers(articles) {
 	}));
 }
 
+function mapViewedArticles(articles) {
+	return articles.map(({ pageid, ...rest }) => ({
+		...rest,
+		pageid,
+		isViewed: ArticlesDatabase.isArticleViewed(pageid),
+	}));
+}
+
 function useMapMediator() {
 	const [
 		,
-		{ addMarkers, setGoogleApiLoaded, setModalVisible, setCurrentArticle },
+		{
+			addMarkers,
+			setGoogleApiLoaded,
+			setModalVisible,
+			setCurrentArticle,
+			setArticleWasViewed,
+		},
 	] = useMapStore();
 
 	async function mapChanged(center) {
 		const response = await WikipediaApi.getArticles({ coord: center });
-		const articles = mapWikipediaArticlesToMarkers(
-			response.query.geosearch
-		);
+		let articles = mapWikipediaArticlesToMarkers(response.query.geosearch);
+		articles = mapViewedArticles(articles);
 		addMarkers(articles);
 	}
 
@@ -51,6 +65,8 @@ function useMapMediator() {
 		const article = response.query.pages[pageid];
 		setCurrentArticle({ url: article.fullurl, title: article.title });
 		setModalVisible(true);
+		setArticleWasViewed({ pageid, isViewed: true });
+		ArticlesDatabase.setArticleAsViewed(pageid);
 	}
 
 	attachListener('mapChanged', mapChanged);

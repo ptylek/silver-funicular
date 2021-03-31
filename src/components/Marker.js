@@ -28,14 +28,18 @@ const Circle = styled.div`
 	}
 `;
 
-export default function Marker({ title, pageid }) {
+export default function Marker({ title, pageid, color }) {
 	function handleClick() {
 		emit('markerClicked', pageid);
 	}
 
 	return (
 		<Tooltip title={title}>
-			<Circle onClick={handleClick} color='orange' />
+			<Circle onClick={handleClick} color={color} />
 		</Tooltip>
 	);
 }
+
+Marker.defaultProps = {
+	color: 'orange',
+};

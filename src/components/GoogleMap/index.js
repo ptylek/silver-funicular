@@ -17,6 +17,9 @@ const GoogleMapWrapper = styled.div`
 	width: 100%;
 `;
 
+const viewedArticleColor = 'blue';
+const defaultArticleColor = 'orange';
+
 const GoogleMap = () => {
 	const [{ markers }] = useMapStore();
 
@@ -43,6 +46,11 @@ const GoogleMap = () => {
 						lng={marker.lng}
 						title={marker.title}
 						pageid={marker.pageid}
+						color={
+							marker.isViewed
+								? viewedArticleColor
+								: defaultArticleColor
+						}
 					/>
 				))}
 			</GoogleMapReact>
