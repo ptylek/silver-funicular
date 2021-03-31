@@ -17,9 +17,11 @@ const StyledHeader = styled(AntHeader)`
 	padding: 0 20px;
 `;
 
-const SearchBox = styled(Input).attrs({
+const { Search } = Input;
+
+const SearchBox = styled(Search).attrs({
 	type: 'text',
-	placeholder: 'Type address to search...',
+	placeholder: 'Search new location...',
 })`
 	margin: 0 0 0 20px;
 	width: auto;
