@@ -13,7 +13,7 @@ const KRAKOW_POSITION = {
 const DEFAULT_ZOOM = 15;
 
 const GoogleMapWrapper = styled.div`
-	height: calc(100vh - 142px);
+	height: calc(100vh - 64px);
 	width: 100%;
 `;
 

@@ -2,7 +2,7 @@
 
 React application that displays location markers of Wikipedia articles on Google Maps.
 
-This project was developed as part of **Netguru College: Frontend React** (2021 edition) - online workshops by [Netguru](https://www.netguru.com/).
+This project was developed as part of **Netguru College: Frontend React** - online workshops by [Netguru](https://www.netguru.com/) (2021 edition).
 
 ## .env
 
